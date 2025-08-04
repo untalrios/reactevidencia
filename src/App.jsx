@@ -21,13 +21,19 @@ function App() {
   }
 
   //Se verifica que las credenciales sean "admin" / "admin"
-  function ingresar() {
+  async function ingresar() {
+    const peticion = await fetch('http://localhost:3000/login/?usuario=' + usuario + '&clave'+ clave)
+    if(peticion.ok) {
+      setLogueado(true)
+    } else {
+      alert('Usuario o clave incorrectos')
     if (usuario == 'admin' && clave == 'admin') {
       alert('Ingresaste')
       setLogueado(true)
     } else {
       alert('Usuario o clave incorrectos')
     }
+}
   }
 
 //Si se cumple el inicio de sesion se muestra el componente conversor
@@ -45,7 +51,7 @@ function App() {
         <button onClick={ingresar}>Ingresar</button>
     </>
 
-  );
+  )
 
   }
 
